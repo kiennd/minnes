@@ -39,13 +39,13 @@
 {
     NSMutableArray *oldData;
     if ([currentAPI isEqualToString:API_VIDEO_10]) {
-        oldData = _likesData;
+        oldData = [[NSMutableArray alloc] initWithArray: _likesData];
     }else if([currentAPI isEqualToString:API_PopularVideo_10]){
-        oldData = _popularData;
+        oldData = [[NSMutableArray alloc] initWithArray: _popularData];
     }else if([currentAPI isEqualToString:API_RecentVideo_10]){
-        oldData = _recentData;
+        oldData = [[NSMutableArray alloc] initWithArray: _recentData];
     }else if([currentAPI isEqualToString:API_TrendingVideo_10]){
-        oldData = _trendingData;
+        oldData = [[NSMutableArray alloc] initWithArray: _trendingData];
     }
     return oldData;
 }
@@ -53,13 +53,13 @@
 {
     NSMutableArray *oldData;
     if ([currentAPI isEqualToString:API_VIDEO_10]) {
-        oldData = _arrLikesThumbnail;
+        oldData = [[NSMutableArray alloc] initWithArray: _arrLikesThumbnail];
     }else if([currentAPI isEqualToString:API_PopularVideo_10]){
-        oldData = _arrPopularThumbnail;
+        oldData = [[NSMutableArray alloc] initWithArray: _arrPopularThumbnail];
     }else if([currentAPI isEqualToString:API_RecentVideo_10]){
-        oldData = _arrRecentThumbnail;
+        oldData = [[NSMutableArray alloc] initWithArray: _arrRecentThumbnail];
     }else if([currentAPI isEqualToString:API_TrendingVideo_10]){
-        oldData = _arrTrendingThumbnail;
+        oldData = [[NSMutableArray alloc] initWithArray: _arrTrendingThumbnail];
     }
     return oldData;
 }
@@ -69,25 +69,25 @@
 - (void) setDataWithAPI:(NSString*) currentAPI Data:(NSMutableArray*)data
 {
     if ([currentAPI isEqualToString:API_VIDEO_10]) {
-        _likesData = data;
+        _likesData = [[NSMutableArray alloc] initWithArray: data];
     }else if([currentAPI isEqualToString:API_PopularVideo_10]){
-        _popularData = data;
+        _popularData = [[NSMutableArray alloc] initWithArray: data];
     }else if([currentAPI isEqualToString:API_RecentVideo_10]){
-        _recentData = data;
+        _recentData = [[NSMutableArray alloc] initWithArray: data];
     }else if([currentAPI isEqualToString:API_TrendingVideo_10]){
-        _trendingData = data;
+        _trendingData = [[NSMutableArray alloc] initWithArray: data];
     }
 }
 - (void) setImagesWithAPI:(NSString*) currentAPI ImageArray:(NSMutableArray*)data
 {
     if ([currentAPI isEqualToString:API_VIDEO_10]) {
-        _arrLikesThumbnail = data;
+        _arrLikesThumbnail = [[NSMutableArray alloc] initWithArray: data];
     }else if([currentAPI isEqualToString:API_PopularVideo_10]){
-        _arrPopularThumbnail = data;
+        _arrPopularThumbnail = [[NSMutableArray alloc] initWithArray: data];
     }else if([currentAPI isEqualToString:API_RecentVideo_10]){
-        _arrRecentThumbnail = data;
+        _arrRecentThumbnail = [[NSMutableArray alloc] initWithArray: data];
     }else if([currentAPI isEqualToString:API_TrendingVideo_10]){
-        _arrTrendingThumbnail = data;
+        _arrTrendingThumbnail = [[NSMutableArray alloc] initWithArray: data];
     }
 }
 

@@ -209,6 +209,7 @@ static NSString *const kButtonTitle5 = @"Settings";
                                                  intRepeatCounter = 0;
                                                  
                                                  [aryMMetaDataOfRecent10 removeAllObjects];
+                                                 [aryImageInfo removeAllObjects];
                                                  //Parse Data
                                                  for(id objAry in JSON)
                                                  {
@@ -569,12 +570,12 @@ static NSString *const kButtonTitle5 = @"Settings";
 }
 
 - (void) fetchImageFromServer{
+    NSLog(@"fetch images");
     [aryMOfImages removeAllObjects];
     for (NSString* url in aryMThumnails) {
         UIImage *im = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",API_VIDEO_BASE_URL,url]]]];
         [aryMOfImages addObject:im];
     }
-
 }
 
 #pragma mark - Parsing Json Data of Response.
@@ -584,18 +585,9 @@ static NSString *const kButtonTitle5 = @"Settings";
     
 //    NSMutableArray * arthumb;
     
-    
+    NSLog(@"%@",_currentAPI);
     DataManager* dt = [DataManager sharedManager];
     NSMutableArray * oldData = [dt getDataWithAPI:_currentAPI];
-    
-    
-    if ([aryImageInfo isEqual:oldData]) {
-        [self removeLoading];
-        return;
-    }
-    
-    [dt setDataWithAPI:_currentAPI Data:aryImageInfo];
-    
     for(NSString *strJsonData in aryMMetaDataOfRecent10)
     {
         NSError *error;
@@ -604,20 +596,27 @@ static NSString *const kButtonTitle5 = @"Settings";
         
         [aryMThumnails addObject:[dictTemp1 objectForKey:@"thumburl"]];
     }
+    if(![strAPICallName isEqualToString:@"Photos"])
+    {
+        [self parseTrendingVideos];
+    }
     
+    if ([aryImageInfo isEqual:oldData]) {
+        aryMOfImages = [dt getImagesWithAPI:_currentAPI];
+
+    }else{
+        [self fetchImageFromServer];
+        [dt setImagesWithAPI:_currentAPI ImageArray:aryMOfImages];
+    }
     
-    [self fetchImageFromServer];
-    [dt setImagesWithAPI:_currentAPI ImageArray:aryMThumnails];
+    [dt setDataWithAPI:_currentAPI Data:aryImageInfo];
     
     [self.pullToRefreshView finishLoading];
     [self.pullToRefreshView.contentView setLastUpdatedAt:[NSDate date] withPullToRefreshView:self.pullToRefreshView];
     [self removeLoading];
     [tblThumnails reloadData];
     
-    if(![strAPICallName isEqualToString:@"Photos"])
-    {
-        [self parseTrendingVideos];
-    }
+
 }
 
 -(void) parseTrendingVideos
