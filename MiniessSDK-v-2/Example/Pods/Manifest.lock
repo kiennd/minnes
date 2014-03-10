@@ -1,0 +1,14 @@
+PODS:
+  - MZRSlideInMenu (0.0.2)
+
+DEPENDENCIES:
+  - MZRSlideInMenu (from `..`)
+
+EXTERNAL SOURCES:
+  MZRSlideInMenu:
+    :path: ..
+
+SPEC CHECKSUMS:
+  MZRSlideInMenu: 6a94523a77eb8cafa867043305e26db4e39c4bdc
+
+COCOAPODS: 0.29.0
