@@ -137,7 +137,7 @@ static NSString *const kButtonTitle5 = @"Settings";
  */
 -(void)callAPIForThumbnail
 {
-    [self fetchThumbnailsFromServer:API_VIDEO_10];
+    [self fetchThumbnailsFromServer:API_VIDEO_10 Limit:16];
     
 }
 
@@ -147,7 +147,7 @@ static NSString *const kButtonTitle5 = @"Settings";
  */
 -(void)callAPIForTrendVideo
 {
-    [self fetchThumbnailsFromServer:API_TrendingVideo_10];
+    [self fetchThumbnailsFromServer:API_TrendingVideo_10 Limit:10];
 }
 
 
@@ -156,7 +156,7 @@ static NSString *const kButtonTitle5 = @"Settings";
  */
 -(void)callAPIForPopularVideo
 {
-    [self fetchThumbnailsFromServer:API_PopularVideo_10];
+    [self fetchThumbnailsFromServer:API_PopularVideo_10 Limit:10];
 }
 
 
@@ -165,7 +165,7 @@ static NSString *const kButtonTitle5 = @"Settings";
  */
 -(void)callAPIForRecentVideo
 {
-    [self fetchThumbnailsFromServer:API_RecentVideo_10];
+    [self fetchThumbnailsFromServer:API_RecentVideo_10 Limit:10];
 }
 
 
@@ -179,12 +179,12 @@ static NSString *const kButtonTitle5 = @"Settings";
 
 
 #pragma mark - Data Fetching AFNetworking Methods.
--(void) fetchThumbnailsFromServer:(NSString*) apiString
+-(void) fetchThumbnailsFromServer:(NSString*) apiString Limit:(int) limit
 {
     //Preparing Parameter Dictionary to pass in API.
     [self showLoading];
     NSDictionary *paramSurveyAll = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"10", @"limit",
+                                    [NSString stringWithFormat:@"%d",limit], @"limit",
                                     nil];
     _currentAPI = apiString;
     
@@ -231,7 +231,7 @@ static NSString *const kButtonTitle5 = @"Settings";
                                              
                                              if(intRepeatCounter < 3)
                                              {
-                                                 [self fetchThumbnailsFromServer:apiString];
+                                                 [self fetchThumbnailsFromServer:apiString Limit:limit];
                                              }
                                              else
                                              {
@@ -691,19 +691,37 @@ static NSString *const kButtonTitle5 = @"Settings";
     [cell.contentView addSubview:imgView];
     imgView = nil;
     
+    UIButton *btnOnCell1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnOnCell1.frame = CGRectMake(0, 0, 160, 200);
+    btnOnCell1.tag = indexPath.row*2 + 1000;
+    [btnOnCell1 addTarget:nil action:@selector(btnCellClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:btnOnCell1];
+    
     
     NSLog(@"%d",aryMThumnails.count);
-    NSLog(@"%d",(indexPath.row + 1));
+    NSLog(@"%d",(indexPath.row*2+1));
     
     //For Column 2.
-    if(aryMThumnails.count > (indexPath.row + 1))
-    {
+//    if (indexPath.row*2+1!=15) {
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(160, 0, 160, 200)];
         imgView.tag = 2;
         imgView.image = [aryMOfImages objectAtIndex:indexPath.row*2+1];
         [cell.contentView addSubview:imgView];
+        
+        
+        UIButton *btnOnCell2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnOnCell2.frame = CGRectMake(160, 0, 160, 200);
+        btnOnCell2.tag = (indexPath.row*2 + 1 + 1000);
+        [btnOnCell2 addTarget:nil action:@selector(btnCellClick:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:btnOnCell2];
         imgView = nil;
-    }
+        
+//    }else{
+//        UIView *view = [cell.contentView viewWithTag:2];
+//        [view removeFromSuperview];
+//        
+//    }
+
 
     
     //if cell ends.
@@ -742,18 +760,10 @@ static NSString *const kButtonTitle5 = @"Settings";
 //    }
     
     //For button on column1.
-    UIButton *btnOnCell1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnOnCell1.frame = CGRectMake(0, 0, 160, 200);
-    btnOnCell1.tag = indexPath.row*2 + 1000;
-    [btnOnCell1 addTarget:nil action:@selector(btnCellClick:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:btnOnCell1];
+
     
     //For button on column2.
-    UIButton *btnOnCell2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnOnCell2.frame = CGRectMake(160, 0, 160, 200);
-    btnOnCell2.tag = (indexPath.row*2 + 1 + 1000);
-    [btnOnCell2 addTarget:nil action:@selector(btnCellClick:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:btnOnCell2];
+
     
     //For button on column3. Copy pase button code if you need 3 columns just manage its frame.
 
@@ -869,7 +879,7 @@ static NSString *const kButtonTitle5 = @"Settings";
 
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
     [self.pullToRefreshView startLoading];
-    [self fetchThumbnailsFromServer:_currentAPI];
+    [self fetchThumbnailsFromServer:_currentAPI Limit:16];
     
 }
 
@@ -910,6 +920,7 @@ static NSString *const kButtonTitle5 = @"Settings";
     long x = strtol(cStr+1, NULL, 16);
     return [self colorWithHex:x];
 }
+
 - (UIColor *)colorWithHex:(UInt32)col {
     unsigned char r, g, b;
     b = col & 0xFF;

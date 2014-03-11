@@ -29,6 +29,8 @@
 		4B3D14D818CDF4C400CF492C /* SSPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3D14D518CDF4C400CF492C /* SSPullToRefreshView.m */; };
 		4B3D14DC18CDF69000CF492C /* NDKPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3D14DB18CDF69000CF492C /* NDKPullToRefreshView.m */; };
 		4B3D14E118CE036A00CF492C /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3D14E018CE036A00CF492C /* DataManager.m */; };
+		4B613EEF18CEA20E001E503A /* NDKLoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B613EEE18CEA20E001E503A /* NDKLoadMoreCell.m */; };
+		4B613EF218CEA4E5001E503A /* NDKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B613EF118CEA4E5001E503A /* NDKTableViewCell.m */; };
 		4BE3097518CB80B50010AD69 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE3097318CB80B50010AD69 /* ImageViewController.m */; };
 		4BE3097618CB80B50010AD69 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE3097318CB80B50010AD69 /* ImageViewController.m */; };
 		4BE3097718CB80B50010AD69 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE3097418CB80B50010AD69 /* ImageViewController.xib */; };
@@ -102,6 +104,10 @@
 		4B3D14DB18CDF69000CF492C /* NDKPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDKPullToRefreshView.m; sourceTree = "<group>"; };
 		4B3D14DF18CE036A00CF492C /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		4B3D14E018CE036A00CF492C /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		4B613EED18CEA20E001E503A /* NDKLoadMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDKLoadMoreCell.h; sourceTree = "<group>"; };
+		4B613EEE18CEA20E001E503A /* NDKLoadMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDKLoadMoreCell.m; sourceTree = "<group>"; };
+		4B613EF018CEA4E5001E503A /* NDKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDKTableViewCell.h; sourceTree = "<group>"; };
+		4B613EF118CEA4E5001E503A /* NDKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDKTableViewCell.m; sourceTree = "<group>"; };
 		4BE3097218CB80B50010AD69 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewController.h; path = ../ImageViewController.h; sourceTree = "<group>"; };
 		4BE3097318CB80B50010AD69 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewController.m; path = ../ImageViewController.m; sourceTree = "<group>"; };
 		4BE3097418CB80B50010AD69 /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewController.xib; path = ../ImageViewController.xib; sourceTree = "<group>"; };
@@ -228,8 +234,9 @@
 		3F69C1F418930726003D2A4E /* MZRSlideInMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4B613EEC18CEA1DC001E503A /* views */,
 				4B3D14DE18CE034C00CF492C /* data */,
-				4B3D14D918CDF52F00CF492C /* views */,
+				4B3D14D918CDF52F00CF492C /* ViewControllers */,
 				4BC99FDE18CB9BFD0035D986 /* resources */,
 				4BE3097418CB80B50010AD69 /* ImageViewController.xib */,
 				4F5129D818C4FF520087580F /* Delegate */,
@@ -288,17 +295,15 @@
 			path = ../SSPullToRefresh;
 			sourceTree = "<group>";
 		};
-		4B3D14D918CDF52F00CF492C /* views */ = {
+		4B3D14D918CDF52F00CF492C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				4BE3097218CB80B50010AD69 /* ImageViewController.h */,
 				4BE3097318CB80B50010AD69 /* ImageViewController.m */,
 				3F69C20318930726003D2A4E /* ViewController.h */,
 				3F69C20418930726003D2A4E /* ViewController.m */,
-				4B3D14DA18CDF69000CF492C /* NDKPullToRefreshView.h */,
-				4B3D14DB18CDF69000CF492C /* NDKPullToRefreshView.m */,
 			);
-			name = views;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		4B3D14DE18CE034C00CF492C /* data */ = {
@@ -308,6 +313,19 @@
 				4B3D14E018CE036A00CF492C /* DataManager.m */,
 			);
 			name = data;
+			sourceTree = "<group>";
+		};
+		4B613EEC18CEA1DC001E503A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				4B3D14DA18CDF69000CF492C /* NDKPullToRefreshView.h */,
+				4B3D14DB18CDF69000CF492C /* NDKPullToRefreshView.m */,
+				4B613EED18CEA20E001E503A /* NDKLoadMoreCell.h */,
+				4B613EEE18CEA20E001E503A /* NDKLoadMoreCell.m */,
+				4B613EF018CEA4E5001E503A /* NDKTableViewCell.h */,
+				4B613EF118CEA4E5001E503A /* NDKTableViewCell.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		4BC99FDE18CB9BFD0035D986 /* resources */ = {
@@ -554,6 +572,7 @@
 				709D6F5618C06678008AAF9F /* AFURLConnectionOperation.m in Sources */,
 				4B3D14D718CDF4C400CF492C /* SSPullToRefreshSimpleContentView.m in Sources */,
 				4B3D14D618CDF4C400CF492C /* SSPullToRefreshDefaultContentView.m in Sources */,
+				4B613EF218CEA4E5001E503A /* NDKTableViewCell.m in Sources */,
 				709D6F5718C06678008AAF9F /* AFXMLRequestOperation.m in Sources */,
 				709D6F5318C06678008AAF9F /* AFJSONRequestOperation.m in Sources */,
 				709D6F5818C06678008AAF9F /* UIImageView+AFNetworking.m in Sources */,
@@ -569,6 +588,7 @@
 				4B3D14DC18CDF69000CF492C /* NDKPullToRefreshView.m in Sources */,
 				709D6F5A18C06678008AAF9F /* NSString+SBJSON.m in Sources */,
 				709D6F5018C06678008AAF9F /* AFHTTPClient.m in Sources */,
+				4B613EEF18CEA20E001E503A /* NDKLoadMoreCell.m in Sources */,
 				4B3D14D818CDF4C400CF492C /* SSPullToRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
